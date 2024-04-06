@@ -41,5 +41,25 @@ public class AtividadeController {
         return ResponseEntity.ok().body(listaTelefonica);
     }
 
+    @Transactional
+    @PostMapping("/adicionar-contato/{contatoId}/{listaId}")
+    public ResponseEntity<VetorListaTelefonica> adicionarContato(@PathVariable Long contatoId, @PathVariable Long listaId) {
+        Contato contato = entityManager.find(Contato.class, contatoId);
+        VetorListaTelefonica listaTelefonica = entityManager.find(VetorListaTelefonica.class, listaId);
+        listaTelefonica.adicionarContato(contato);
+        entityManager.persist(listaTelefonica);
+        return ResponseEntity.ok().body(listaTelefonica);
+    }
+
+    @Transactional
+    @DeleteMapping("/remover-contato/{contatoId}/{listaId}")
+    public ResponseEntity<VetorListaTelefonica> removerContato(@PathVariable Long contatoId, @PathVariable Long listaId) {
+        Contato contato = entityManager.find(Contato.class, contatoId);
+        VetorListaTelefonica listaTelefonica = entityManager.find(VetorListaTelefonica.class, listaId);
+        listaTelefonica.removerContato(contato.nome);
+        entityManager.persist(listaTelefonica);
+        return ResponseEntity.ok().body(listaTelefonica);
+    }
+
 
 }
