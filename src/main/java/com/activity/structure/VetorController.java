@@ -1,15 +1,16 @@
 package com.activity.structure;
 
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.Transient;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 @RestController
-@RequestMapping("/atividade")
-public class AtividadeController {
+@RequestMapping("/atividade-vetor")
+public class VetorController {
     @Autowired
     private EntityManager entityManager;
 
@@ -18,7 +19,7 @@ public class AtividadeController {
     @Transactional
     @PostMapping("/criar-contato")
     public ResponseEntity<Contato> criarContato(@RequestBody Contato contato) {
-        Contato newContato = new Contato(contato.nome, contato.telefone);
+        Contato newContato = new Contato(contato.getNome(), contato.getTelefone());
         entityManager.persist( newContato);
             return ResponseEntity.ok().body(newContato);
     }
@@ -56,9 +57,22 @@ public class AtividadeController {
     public ResponseEntity<VetorListaTelefonica> removerContato(@PathVariable Long contatoId, @PathVariable Long listaId) {
         Contato contato = entityManager.find(Contato.class, contatoId);
         VetorListaTelefonica listaTelefonica = entityManager.find(VetorListaTelefonica.class, listaId);
-        listaTelefonica.removerContato(contato.nome);
+        listaTelefonica.removerContato(contato.getNome());
         entityManager.persist(listaTelefonica);
         return ResponseEntity.ok().body(listaTelefonica);
+    }
+
+
+
+    @Transactional
+    @GetMapping("/buscar-contato")
+    public ResponseEntity<Contato> buscarContato(@RequestBody Map<String, String> requestBody) {
+        String nome = requestBody.get("nome");
+        Contato contato = entityManager.createQuery("SELECT c FROM Contato c WHERE c.nome = :nome", Contato.class)
+                .setParameter("nome", nome)
+                .getSingleResult();
+
+        return ResponseEntity.ok().body(contato);
     }
 
 

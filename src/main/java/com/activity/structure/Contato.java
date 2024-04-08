@@ -18,8 +18,8 @@ public class Contato {
 @GeneratedValue(strategy = GenerationType.SEQUENCE)
 private Integer contatoId;
 
-String nome;
-String telefone;
+private String nome;
+private String telefone;
 
 public Contato(String nome, String telefone) {
     this.nome = nome;

@@ -30,12 +30,12 @@ public class VetorListaTelefonica {
     }
 
     public void removerContato(String nome) {
-        contatos.removeIf(c -> c.nome.equals(nome));
+        contatos.removeIf(c -> c.getNome().equals(nome));
     }
 
     public Contato buscarContato(String nome) {
         for (Contato contato : contatos) {
-            if (contato.nome.equals(nome)) {
+            if (contato.getNome().equals(nome)) {
                 return contato;
             }
         }

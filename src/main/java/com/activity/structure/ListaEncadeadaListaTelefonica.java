@@ -19,12 +19,12 @@ public class ListaEncadeadaListaTelefonica {
 
     public void adicionarContato(Contato contato) {
         No novoNo = new No(contato);
-        if (inicio == null || contato.nome.compareTo(inicio.contato.nome) < 0) {
+        if (inicio == null || contato.getNome().compareTo(inicio.contato.getNome()) < 0) {
             novoNo.proximo = inicio;
             inicio = novoNo;
         } else {
             No atual = inicio;
-            while (atual.proximo != null && contato.nome.compareTo(atual.proximo.contato.nome) > 0) {
+            while (atual.proximo != null && contato.getNome().compareTo(atual.proximo.contato.getNome()) > 0) {
                 atual = atual.proximo;
             }
             novoNo.proximo = atual.proximo;
@@ -34,12 +34,12 @@ public class ListaEncadeadaListaTelefonica {
 
     public void removerContato(String nome) {
         if (inicio == null) return;
-        if (inicio.contato.nome.equals(nome)) {
+        if (inicio.contato.getNome().equals(nome)) {
             inicio = inicio.proximo;
             return;
         }
         No atual = inicio;
-        while (atual.proximo != null && !atual.proximo.contato.nome.equals(nome)) {
+        while (atual.proximo != null && !atual.proximo.contato.getNome().equals(nome)) {
             atual = atual.proximo;
         }
         if (atual.proximo != null) {
@@ -50,7 +50,7 @@ public class ListaEncadeadaListaTelefonica {
     public Contato buscarContato(String nome) {
         No atual = inicio;
         while (atual != null) {
-            if (atual.contato.nome.equals(nome)) {
+            if (atual.contato.getNome().equals(nome)) {
                 return atual.contato;
             }
             atual = atual.proximo;
