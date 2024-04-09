@@ -1,60 +1,51 @@
 package com.activity.structure;
 
+import jakarta.persistence.*;
+import lombok.Data;
+import java.util.ArrayList;
+import java.util.List;
+
+@Entity
+@Data
 public class ListaEncadeadaListaTelefonica {
-    static class No {
-        Contato contato;
-        No proximo;
 
-        public No(Contato contato) {
-            this.contato = contato;
-            this.proximo = null;
-        }
-    }
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    No inicio;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "lista_telefonica_id")
+    private List<No> nos = new ArrayList<>();
 
-    public ListaEncadeadaListaTelefonica() {
-        inicio = null;
-    }
+    public ListaEncadeadaListaTelefonica() {}
 
     public void adicionarContato(Contato contato) {
         No novoNo = new No(contato);
-        if (inicio == null || contato.getNome().compareTo(inicio.contato.getNome()) < 0) {
-            novoNo.proximo = inicio;
-            inicio = novoNo;
+        if (nos.isEmpty() || contato.getNome().compareTo(nos.get(0).getContato().getNome()) < 0) {
+            nos.add(0, novoNo);
         } else {
-            No atual = inicio;
-            while (atual.proximo != null && contato.getNome().compareTo(atual.proximo.contato.getNome()) > 0) {
-                atual = atual.proximo;
+            for (int i = 0; i < nos.size() - 1; i++) {
+                if (contato.getNome().compareTo(nos.get(i + 1).getContato().getNome()) < 0) {
+                    nos.add(i + 1, novoNo);
+                    return;
+                }
             }
-            novoNo.proximo = atual.proximo;
-            atual.proximo = novoNo;
+            nos.add(novoNo);
         }
     }
 
     public void removerContato(String nome) {
-        if (inicio == null) return;
-        if (inicio.contato.getNome().equals(nome)) {
-            inicio = inicio.proximo;
-            return;
-        }
-        No atual = inicio;
-        while (atual.proximo != null && !atual.proximo.contato.getNome().equals(nome)) {
-            atual = atual.proximo;
-        }
-        if (atual.proximo != null) {
-            atual.proximo = atual.proximo.proximo;
-        }
+        nos.removeIf(no -> no.getContato().getNome().equals(nome));
     }
 
     public Contato buscarContato(String nome) {
-        No atual = inicio;
-        while (atual != null) {
-            if (atual.contato.getNome().equals(nome)) {
-                return atual.contato;
+        for (No no : nos) {
+            if (no.getContato().getNome().equals(nome)) {
+                return no.getContato();
             }
-            atual = atual.proximo;
         }
         return null;
     }
+
+
 }

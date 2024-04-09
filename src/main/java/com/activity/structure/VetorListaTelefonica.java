@@ -16,7 +16,7 @@ public class VetorListaTelefonica {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id; // Adicionando um identificador
+    private Long id;
 
     @OneToMany(cascade = CascadeType.ALL)
     private List<Contato> contatos;

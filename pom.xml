@@ -51,7 +51,12 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-	</dependencies>
+        <dependency>
+            <groupId>org.apache.maven.surefire</groupId>
+            <artifactId>surefire-extensions-api</artifactId>
+            <version>3.1.2</version>
+        </dependency>
+    </dependencies>
 
 	<build>
 		<plugins>
