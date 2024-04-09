@@ -36,6 +36,8 @@ public class ListaEncadeadaListaTelefonica {
 
     public void removerContato(String nome) {
         nos.removeIf(no -> no.getContato().getNome().equals(nome));
+        System.out.println(nome);
+        System.out.println();
     }
 
     public Contato buscarContato(String nome) {

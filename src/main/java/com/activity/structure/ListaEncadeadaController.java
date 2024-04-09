@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 @RestController
 @RequestMapping("/atividade-lista-encadeada")
 public class ListaEncadeadaController {
@@ -34,11 +36,12 @@ public class ListaEncadeadaController {
         return ResponseEntity.ok().body(lista);
     }
 
-    @DeleteMapping("/{id}/remover-contato/{nome}")
-    public ResponseEntity<?> removerContato(@PathVariable Long id, @PathVariable String nome) {
+    @DeleteMapping("/{id}/remover-contato")
+    public ResponseEntity<?> removerContato(@PathVariable Long id, @RequestBody String nome) {
         ListaEncadeadaListaTelefonica lista = listaTelefonicaRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Lista telefônica não encontrada"));
         lista.removerContato(nome);
         listaTelefonicaRepository.save(lista);
+        System.out.println(lista);
         return ResponseEntity.ok().build();
     }
 
