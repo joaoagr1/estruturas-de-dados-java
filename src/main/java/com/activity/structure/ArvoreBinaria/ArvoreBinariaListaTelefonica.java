@@ -1,17 +1,10 @@
-package com.activity.structure;
+package com.activity.structure.ArvoreBinaria;
+
+import com.activity.structure.Contato.Contato;
 
 public class ArvoreBinariaListaTelefonica {
-static class No {
-    Contato contato;
-    No esquerda, direita;
 
-    public No(Contato contato) {
-        this.contato = contato;
-        esquerda = direita = null;
-    }
-}
-
-No raiz;
+NoArvoreBinaria raiz;
 
 public ArvoreBinariaListaTelefonica() {
     raiz = null;
@@ -21,9 +14,9 @@ public void adicionarContato(Contato contato) {
     raiz = adicionarContatoRecursivo(raiz, contato);
 }
 
-private No adicionarContatoRecursivo(No no, Contato contato) {
+private NoArvoreBinaria adicionarContatoRecursivo(NoArvoreBinaria no, Contato contato) {
     if (no == null) {
-        return new No(contato);
+        return new NoArvoreBinaria(contato);
     }
     if (contato.getNome().compareTo(no.contato.getNome()) < 0) {
         no.esquerda = adicionarContatoRecursivo(no.esquerda, contato);
@@ -37,7 +30,7 @@ public void removerContato(String nome) {
     raiz = removerContatoRecursivo(raiz, nome);
 }
 
-private No removerContatoRecursivo(No no, String nome) {
+private NoArvoreBinaria removerContatoRecursivo(NoArvoreBinaria no, String nome) {
     if (no == null) return no;
 
     if (nome.compareTo(no.contato.getNome()) < 0) {
@@ -54,7 +47,7 @@ private No removerContatoRecursivo(No no, String nome) {
     return no;
 }
 
-private Contato encontrarMenorValor(No no) {
+private Contato encontrarMenorValor(NoArvoreBinaria no) {
     while (no.esquerda != null) {
         no = no.esquerda;
     }
@@ -65,7 +58,7 @@ public Contato buscarContato(String nome) {
     return buscarContatoRecursivo(raiz, nome);
 }
 
-private Contato buscarContatoRecursivo(No no, String nome) {
+private Contato buscarContatoRecursivo(NoArvoreBinaria no, String nome) {
     if (no == null || no.contato.getNome().equals(nome)) {
         return no != null ? no.contato : null;
     }

@@ -1,14 +1,14 @@
-package com.activity.structure;
+package com.activity.structure.ListaEncadeada;
 
+import com.activity.structure.Contato.Contato;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @Entity(name = "no")
 @NoArgsConstructor
-public class No {
+public class NoListaEncadeada {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,7 +17,7 @@ public class No {
     @OneToOne
     private Contato contato;
 
-    public No(Contato contato) {
+    public NoListaEncadeada(Contato contato) {
         this.contato = contato;
     }
 }

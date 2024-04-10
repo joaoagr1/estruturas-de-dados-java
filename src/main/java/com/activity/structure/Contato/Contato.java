@@ -1,4 +1,4 @@
-package com.activity.structure;
+package com.activity.structure.Contato;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

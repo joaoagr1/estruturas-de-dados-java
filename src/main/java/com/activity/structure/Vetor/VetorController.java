@@ -1,5 +1,7 @@
-package com.activity.structure;
+package com.activity.structure.Vetor;
 
+import com.activity.structure.Contato.Contato;
+import com.activity.structure.Vetor.VetorListaTelefonica;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;

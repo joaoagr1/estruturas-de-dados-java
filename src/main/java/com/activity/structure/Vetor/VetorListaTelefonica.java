@@ -1,6 +1,7 @@
-package com.activity.structure;
+package com.activity.structure.Vetor;
 
 
+import com.activity.structure.Contato.Contato;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;

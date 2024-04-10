@@ -1,7 +1,6 @@
-package com.activity.structure;
+package com.activity.structure.ListaEncadeada;
 
-import com.activity.structure.ListaEncadeadaListaTelefonica;
-import com.activity.structure.Contato;
+import com.activity.structure.Contato.Contato;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,6 +51,7 @@ public class ListaEncadeadaController {
     public ResponseEntity<Contato> buscarContato(@PathVariable Long id, @PathVariable String nome) {
         ListaEncadeadaListaTelefonica lista = listaTelefonicaRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Lista telefônica não encontrada"));
         Contato contato = lista.buscarContato(nome);
+        System.out.println(contato);
         if (contato == null) {
             return ResponseEntity.notFound().build();
         }
