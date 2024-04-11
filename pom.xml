@@ -56,6 +56,11 @@
             <artifactId>surefire-extensions-api</artifactId>
             <version>3.1.2</version>
         </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>6.1.5</version>
+        </dependency>
     </dependencies>
 
 	<build>

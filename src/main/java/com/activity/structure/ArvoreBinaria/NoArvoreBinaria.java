@@ -1,6 +1,7 @@
 package com.activity.structure.ArvoreBinaria;
 
 import com.activity.structure.Contato.Contato;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,6 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class NoArvoreBinaria {
 
+    @JsonIgnore
     @Column(name = "id")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

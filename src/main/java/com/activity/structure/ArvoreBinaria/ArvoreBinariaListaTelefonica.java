@@ -2,15 +2,19 @@ package com.activity.structure.ArvoreBinaria;
 
 import com.activity.structure.Contato.Contato;
 import com.activity.structure.ListaEncadeada.NoListaEncadeada;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity(name = "arvoreBinariaListTelefonica")
+@Entity(name = "ArvoreBinariaListaTelefonica")
 @Data
+@Component
 public class ArvoreBinariaListaTelefonica {
+    @JsonIgnore
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -18,10 +22,11 @@ public class ArvoreBinariaListaTelefonica {
     @Transient
     NoArvoreBinaria raiz;
 
-    @Transient
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "arvore_binaria_lista_telefonica_id")
-    private List<NoArvoreBinaria> noArvoreBinaria = new ArrayList<>();
+
+//    @Transient
+//    @OneToMany(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "arvore_binaria_lista_telefonica_id")
+//    private List<NoArvoreBinaria> noArvoreBinaria = new ArrayList<>();
 
     public ArvoreBinariaListaTelefonica() {
         raiz = null;
