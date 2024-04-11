@@ -35,6 +35,7 @@ public class ListaEncadeadaController {
         return ResponseEntity.ok().body(lista);
     }
 
+    @Transactional
     @DeleteMapping("/{id}/remover-contato")
     public ResponseEntity<?> removerContato(@PathVariable Long id, @RequestBody Map<String, String> request) {
         ListaEncadeadaListaTelefonica lista = listaTelefonicaRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Lista telefônica não encontrada"));

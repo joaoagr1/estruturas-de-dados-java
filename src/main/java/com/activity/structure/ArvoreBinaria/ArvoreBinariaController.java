@@ -42,10 +42,11 @@ public class ArvoreBinariaController {
         }
     }
 
+    @Transactional
     @DeleteMapping("/remover")
     public ResponseEntity<Void> removerContato(@RequestParam String nome) {
         arvoreBinariaListaTelefonica.removerContato(nome);
-        entityManager.persist(arvoreBinariaListaTelefonica);
+        entityManager.flush();
         return ResponseEntity.ok().build();
     }
 }
