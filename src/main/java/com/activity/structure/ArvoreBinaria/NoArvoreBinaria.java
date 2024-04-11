@@ -1,11 +1,32 @@
 package com.activity.structure.ArvoreBinaria;
 
 import com.activity.structure.Contato.Contato;
+import jakarta.persistence.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Data
+@Entity(name = "noArvoreBinaria")
+@NoArgsConstructor
 public class NoArvoreBinaria {
 
-    Contato contato;
-    NoArvoreBinaria esquerda, direita;
+    @Column(name = "id")
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @ManyToOne
+    @JoinColumn(name = "contato_id")
+    private Contato contato;
+
+    @ManyToOne
+    @JoinColumn(name = "esquerda_id")
+    private NoArvoreBinaria esquerda;
+
+    @ManyToOne
+    @JoinColumn(name = "direita_id")
+    private NoArvoreBinaria direita;
+
 
     public NoArvoreBinaria(Contato contato) {
         this.contato = contato;
