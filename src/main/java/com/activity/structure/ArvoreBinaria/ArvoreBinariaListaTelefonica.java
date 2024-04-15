@@ -23,10 +23,10 @@ public class ArvoreBinariaListaTelefonica {
     NoArvoreBinaria raiz;
 
 
-//    @Transient
-//    @OneToMany(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "arvore_binaria_lista_telefonica_id")
-//    private List<NoArvoreBinaria> noArvoreBinaria = new ArrayList<>();
+    @Transient
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "arvore_binaria_lista_telefonica_id")
+    private List<NoArvoreBinaria> noArvoreBinaria = new ArrayList<>();
 
     public ArvoreBinariaListaTelefonica() {
         raiz = null;

@@ -68,8 +68,7 @@ public class VetorController {
 
     @Transactional
     @GetMapping("/buscar-contato")
-    public ResponseEntity<Contato> buscarContato(@RequestBody Map<String, String> requestBody) {
-        String nome = requestBody.get("nome");
+    public ResponseEntity<Contato> buscarContato(@RequestParam String nome) {
         Contato contato = entityManager.createQuery("SELECT c FROM Contato c WHERE c.nome = :nome", Contato.class)
                 .setParameter("nome", nome)
                 .getSingleResult();

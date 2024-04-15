@@ -33,8 +33,8 @@ public class ArvoreBinariaController {
     }
 
     @GetMapping("/buscar")
-    public ResponseEntity<Contato> buscarContato(@RequestBody Map<String, String> request) {
-        Contato contato = arvoreBinariaListaTelefonica.buscarContato(request.get("nome"));
+    public ResponseEntity<Contato> buscarContato(@RequestParam String nome) {
+        Contato contato = arvoreBinariaListaTelefonica.buscarContato(nome);
         if (contato != null) {
             return ResponseEntity.ok(contato);
         } else {
