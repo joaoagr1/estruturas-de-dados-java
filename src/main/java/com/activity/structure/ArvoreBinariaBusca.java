@@ -23,7 +23,6 @@ public class ArvoreBinariaBusca {
         raiz = null;
     }
 
-    // Método para inserir uma palavra na árvore
     public void inserir(String chave) {
         chave = chave.toLowerCase(); // Normaliza a palavra para minúsculas
         raiz = inserirRecursivamente(raiz, chave);
@@ -35,7 +34,6 @@ public class ArvoreBinariaBusca {
             return raiz;
         }
 
-        // Comparação sem distinção de maiúsculas e minúsculas
         int comparacao = chave.compareTo(raiz.chave);
         if (comparacao < 0) {
             raiz.esquerda = inserirRecursivamente(raiz.esquerda, chave);
@@ -46,9 +44,8 @@ public class ArvoreBinariaBusca {
         return raiz;
     }
 
-    // Método para verificar se uma palavra está presente na árvore
     public boolean contem(String chave) {
-        chave = chave.toLowerCase(); // Normaliza a palavra para minúsculas
+        chave = chave.toLowerCase();
         return contemRecursivamente(raiz, chave);
     }
 
@@ -57,7 +54,6 @@ public class ArvoreBinariaBusca {
             return false;
         }
 
-        // Comparação sem distinção de maiúsculas e minúsculas
         int comparacao = chave.compareTo(raiz.chave);
         if (comparacao == 0) {
             return true;

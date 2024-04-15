@@ -13,7 +13,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="structure" options="-parameters --add-exports java.compiler/javax.annotation=ALL-UNNAMED" />
+      <module name="structure" options="-parameters" />
     </option>
   </component>
 </project>

@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/dicionario")
 @Data
 public class DicionarioController {
 
@@ -16,7 +16,7 @@ public class DicionarioController {
     @Autowired
     private LerPalavrasChaveService lerPalavrasChaveService;
 
-    @GetMapping("/palavra-chave")
+    @GetMapping("/buscar")
     public boolean palavraEstaPresente(@RequestParam String palavra) {
         return verificarPalavrasService.palavraEstaPresente(palavra);
     }
